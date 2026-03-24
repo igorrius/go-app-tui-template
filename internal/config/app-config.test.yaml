@@ -1,0 +1,9 @@
+test:
+  env: "${TEST_VAR}"
+  default_missing: "${MISSING_VAR:-default_val}"
+  default_exists: "${TEST_VAR_DEFAULT:-fallback}"
+  nested:
+    val: "${TEST_VAR}"
+  list:
+    - "${TEST_VAR}"
+    - "static"

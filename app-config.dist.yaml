@@ -1,0 +1,17 @@
+app:
+  name: go-app-tui-template
+
+database:
+  path: db/go-app-tui-template.db
+
+logging:
+  # Minimum log level: debug, info, warn, error (default: info)
+  level: ${LOG_LEVEL:-debug}
+  # Output format: text (human-readable) or json (machine-readable) (default: text)
+  format: text
+  # Log destination: stdout, stderr, or file (default: stdout)
+  sink: file
+  # Log directory used when sink=file (default: logs)
+  dir: logs
+  # File rotation interval used when sink=file, e.g. 1h, 24h (default: 1h)
+  rotation_interval: 1h
