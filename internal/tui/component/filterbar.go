@@ -90,7 +90,7 @@ func (f *FilterBar) View() tea.View {
 		} else {
 			check = uncheckedStyle.Render("[ ]")
 		}
-		b.WriteString(fmt.Sprintf("%d%s %-5s", l.key, check, l.name))
+		fmt.Fprintf(&b, "%d%s %-5s", l.key, check, l.name)
 		if i < len(levels)-1 {
 			b.WriteString("  ")
 		}

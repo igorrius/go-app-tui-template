@@ -137,11 +137,7 @@ func (a *App) View() tea.View {
 
 	// Screen content lines
 	screenContent := screenView.Content
-	screenLines := strings.Split(screenContent, "\n")
-	screenLineCount := len(screenLines)
-	if screenContent == "" {
-		screenLineCount = 0
-	}
+	screenLineCount := renderedLineCount(screenContent)
 
 	contentHeight := a.contentHeight()
 
