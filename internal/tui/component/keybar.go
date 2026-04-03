@@ -5,18 +5,18 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/igorrius/go-app-tui-template/internal/tui/screen"
+	"github.com/igorrius/go-app-tui-template/internal/tui/nav"
 )
 
 type keyBarItem struct {
 	key      string
 	label    string
-	screenID screen.ID
+	screenID nav.ID
 }
 
 var keyBarItems = []keyBarItem{
-	{key: "F1", label: "Dashboard", screenID: screen.DashboardID},
-	{key: "F9", label: "Logs", screenID: screen.LogViewID},
+	{key: "F1", label: "Dashboard", screenID: nav.DashboardID},
+	{key: "F9", label: "Logs", screenID: nav.LogViewID},
 	{key: "F10", label: "Quit"},
 }
 
@@ -30,14 +30,14 @@ var (
 type KeyBar struct {
 	width    int
 	items    []keyBarItem
-	activeID screen.ID
+	activeID nav.ID
 }
 
 // NewKeyBar creates a key bar component.
 func NewKeyBar() *KeyBar {
 	return &KeyBar{
 		items:    keyBarItems,
-		activeID: screen.DashboardID,
+		activeID: nav.DashboardID,
 	}
 }
 
@@ -79,6 +79,6 @@ func (k *KeyBar) Height() int {
 	return 1
 }
 
-func (k *KeyBar) SetActiveID(id screen.ID) {
+func (k *KeyBar) SetActiveID(id nav.ID) {
 	k.activeID = id
 }
