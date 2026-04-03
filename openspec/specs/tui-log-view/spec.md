@@ -19,6 +19,28 @@ The system SHALL provide a `LogView` screen that receives `LogEvent` messages fr
 - **WHEN** the terminal is resized
 - **THEN** the `LogView` SHALL adjust its visible line count to match the new height
 
+### Requirement: LogView displays filtered log entries
+The system SHALL provide interactive filtering capabilities in the `LogView` screen, allowing users to toggle log levels and search by text.
+
+#### Scenario: LogView includes a FilterBar
+- **WHEN** the `LogView` screen is rendered
+- **THEN** it SHALL include a `FilterBar` component at the bottom of the screen (above the `KeyBar`)
+- **AND** it SHALL dedicate exactly 1 line of terminal height to this `FilterBar`
+
+#### Scenario: LogView applies log level filtering
+- **WHEN** a `LogEvent` is received
+- **OR** the set of enabled log levels changes
+- **THEN** the `LogView` SHALL only display log entries whose `Level` is in the set of enabled levels
+
+#### Scenario: LogView applies text filtering
+- **WHEN** the search filter string is non-empty
+- **THEN** the `LogView` SHALL only display log entries where the `Message` or any `Attr` (key or value) contains the filter string (case-insensitive)
+
+#### Scenario: LogView maintains a master buffer
+- **WHEN** filtering is active
+- **THEN** incoming `LogEvent` messages SHALL be stored in a `masterBuffer` regardless of whether they match the current filter
+- **AND** the displayed view SHALL be re-calculated from this `masterBuffer` on every relevant change
+
 ### Requirement: LogView emits subscription info log on activation
 The system SHALL emit a structured info-level log entry when `LogView.Init()` is called, before the subscription command is returned.
 

@@ -54,9 +54,10 @@ func (d *Dashboard) View() tea.View {
 	}
 	var b strings.Builder
 	for i := 0; i < topPad; i++ {
-		b.WriteString("\n")
+		b.WriteByte('\n')
 	}
 	b.WriteString(line)
+	// Do NOT add a trailing newline here; App.View will handle the separation.
 
 	return tea.NewView(b.String())
 }
