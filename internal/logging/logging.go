@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log/slog"
+	"os"
 	"sync"
 
 	vein "github.com/igorrius/go-vein"
@@ -22,6 +23,27 @@ var (
 	mu      sync.Mutex
 	current *loggingState
 )
+
+// InitConsole initialises logging for console mode: sets slog.Default to a handler
+// writing directly to os.Stdout using the level and format from cfg.
+// Unlike Init, this does NOT start the vein bus or AsyncWriter goroutine.
+func InitConsole(cfg config.LoggingConfig) error {
+	return initConsoleToWriter(cfg, os.Stdout)
+}
+
+// initConsoleToWriter is the testable core of InitConsole.
+func initConsoleToWriter(cfg config.LoggingConfig, w io.Writer) error {
+	opts := &slog.HandlerOptions{Level: cfg.Level}
+	var h slog.Handler
+	switch cfg.Format {
+	case "json":
+		h = slog.NewJSONHandler(w, opts)
+	default:
+		h = slog.NewTextHandler(w, opts)
+	}
+	slog.SetDefault(slog.New(h))
+	return nil
+}
 
 // Init creates the VeinHandler, starts the AsyncWriter goroutine, and sets slog.Default.
 // Calling Init again replaces any previously initialised logging state.

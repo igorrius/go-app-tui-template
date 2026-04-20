@@ -5,6 +5,7 @@ package logging
 var NewAsyncWriterForTest = newAsyncWriter
 var NewSlogHandlerForTest = newSlogHandler
 var NewSinkWriterForTest = newSinkWriter
+var InitConsoleToWriterForTest = initConsoleToWriter
 
 // Done returns the done channel of the AsyncWriter, allowing tests to wait for shutdown.
 func (w *AsyncWriter) Done() <-chan struct{} { return w.done }

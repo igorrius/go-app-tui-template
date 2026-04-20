@@ -1,8 +1,8 @@
 app:
-  name: go-app-tui-template
+  name: app
 
 database:
-  path: db/go-app-tui-template.db
+  path: db/app.db
 
 logging:
   # Minimum log level: debug, info, warn, error (default: info)

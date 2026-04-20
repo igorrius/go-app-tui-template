@@ -1,4 +1,4 @@
-/go-app-tui-template
+/app
 /.env
 /db/
 /logs/

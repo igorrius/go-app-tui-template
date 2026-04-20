@@ -27,7 +27,7 @@ A foundational template repository for building production-ready Go Terminal Use
 ```text
 .
 ├── cmd/
-│   └── go-app-tui-template/   # Application entrypoint and CLI subcommands
+│   └── app/                   # Application entrypoint and CLI subcommands
 ├── internal/
 │   ├── cfg/                   # Dependency Injection providers
 │   ├── config/                # YAML and Env configuration loading
@@ -57,14 +57,14 @@ A foundational template repository for building production-ready Go Terminal Use
 2. Tidy dependencies and build:
    ```bash
    go mod tidy
-   go build ./cmd/go-app-tui-template
+   go build ./cmd/app
    ```
 
 ### Running the App
 
 Run the built binary to start the TUI:
 ```bash
-./go-app-tui-template
+./app
 ```
 
 **TUI Navigation:**
@@ -80,7 +80,7 @@ To override settings locally, create an `app-config.yaml` (which is git-ignored)
 Example `.env`:
 ```env
 LOG_LEVEL=debug
-GO_APP_TUI_TEMPLATE_CONFIG_PATH=./app-config.yaml
+APP_CONFIG=./app-config.yaml
 ```
 
 ### Database Migrations
@@ -89,13 +89,13 @@ The binary includes a built-in migration runner for SQLite. Migrations are writt
 
 ```bash
 # Apply pending migrations
-./go-app-tui-template migrate up
+./app migrate up
 
 # Rollback the last migration
-./go-app-tui-template migrate down
+./app migrate down
 
 # Check migration status
-./go-app-tui-template migrate status
+./app migrate status
 ```
 
 ## Development Workflow

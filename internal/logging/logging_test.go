@@ -84,3 +84,39 @@ func TestShutdown_AlreadyCancelledContext(t *testing.T) {
 	err := logging.Shutdown(cancelled)
 	assert.ErrorIs(t, err, context.Canceled)
 }
+
+// TestInitConsole_TextFormat verifies that InitConsole configures slog.Default to write
+// text-formatted records to the given writer.
+func TestInitConsole_TextFormat(t *testing.T) {
+	var buf bytes.Buffer
+	cfg := config.LoggingConfig{
+		Level:  slog.LevelDebug,
+		Format: "text",
+	}
+
+	require.NoError(t, logging.InitConsoleToWriterForTest(cfg, &buf))
+
+	slog.Info("console-test-message", "k", "v")
+
+	output := buf.String()
+	assert.Contains(t, output, "console-test-message")
+	assert.Contains(t, output, "k=v")
+}
+
+// TestInitConsole_JSONFormat verifies that InitConsole writes JSON-formatted records
+// when cfg.Format is "json".
+func TestInitConsole_JSONFormat(t *testing.T) {
+	var buf bytes.Buffer
+	cfg := config.LoggingConfig{
+		Level:  slog.LevelDebug,
+		Format: "json",
+	}
+
+	require.NoError(t, logging.InitConsoleToWriterForTest(cfg, &buf))
+
+	slog.Info("console-json-message", "key", "value")
+
+	output := buf.String()
+	assert.Contains(t, output, `"msg":"console-json-message"`)
+	assert.Contains(t, output, `"key":"value"`)
+}

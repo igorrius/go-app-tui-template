@@ -3,7 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
 
 	tea "charm.land/bubbletea/v2"
@@ -17,13 +20,33 @@ import (
 	"github.com/urfave/cli/v3"
 )
 
+func runConsoleMode(ctx context.Context, loggingCfg config.LoggingConfig) error {
+	if err := logging.InitConsole(loggingCfg); err != nil {
+		return fmt.Errorf("initializing console logging: %w", err)
+	}
+	defer func() {
+		shutdownCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		defer cancel()
+		_ = logging.Shutdown(shutdownCtx)
+	}()
+
+	sigCtx, stop := signal.NotifyContext(ctx, os.Interrupt, syscall.SIGTERM)
+	defer stop()
+
+	slog.Debug("Running in console mode. Press Ctrl+C to exit.")
+
+	<-sigCtx.Done()
+	return nil
+}
+
 func main() {
 	root := &cli.Command{
-		Name:    "go-app-tui-template",
+		Name:    "app",
 		Usage:   "A terminal UI application",
 		Version: "0.1.0",
 		Flags: []cli.Flag{
 			flag.ConfigFilePath,
+			flag.ConsoleMode,
 		},
 		Commands: []*cli.Command{
 			migrateCommand,
@@ -42,6 +65,10 @@ func main() {
 			loggingCfg, err := config.GetLogging(appCfg)
 			if err != nil {
 				return fmt.Errorf("loading logging config: %w", err)
+			}
+
+			if cmd.Bool(flag.ConsoleModeFlag) {
+				return runConsoleMode(ctx, loggingCfg)
 			}
 
 			bus, err := do.Invoke[*vein.Dispatcher](injector)
