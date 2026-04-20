@@ -1,4 +1,10 @@
-## ADDED Requirements
+# App Entrypoint
+
+## Purpose
+
+Define the purpose of the App Entrypoint spec.
+
+## Requirements
 
 ### Requirement: CLI entry point bootstraps the application
 The system SHALL provide a CLI entry point using `urfave/cli/v3` that initializes the DI container, loads configuration, **initializes the logging subsystem**, resolves the `*vein.Dispatcher` from the DI container and injects it into the TUI `App` so that `LogView` can subscribe to `LogEvent` messages, and launches the TUI as the default action. On exit (including interrupt/SIGTERM) the application SHALL call `logging.Shutdown` to drain any buffered log events before the process terminates.

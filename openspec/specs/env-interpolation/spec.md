@@ -1,7 +1,11 @@
 # Purpose
 TBD: Interpolate environment variables in YAML config and load .env file on startup.
 
-## ADDED Requirements
+## Purpose
+
+This spec defines the purpose of the Purpose capability.
+
+## Requirements
 
 ### Requirement: Interpolate environment variables in YAML config
 The system SHALL support interpolating environment variables into YAML configuration values using the `${VAR}` or `${VAR:-default}` syntax.

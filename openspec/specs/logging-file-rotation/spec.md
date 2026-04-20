@@ -1,4 +1,10 @@
-## ADDED Requirements
+# Logging File Rotation
+
+## Purpose
+
+This spec defines the purpose of the Logging File Rotation capability.
+
+## Requirements
 
 ### Requirement: Time-based log file rotation
 When using the `file` sink, the system SHALL write log entries to files inside the configured directory. Files SHALL be rotated at the configured interval, with each file named using a timestamp that reflects when it was opened (e.g., `app-2006-01-02_15-00.log`). The current log file SHALL be symlinked as `app.log` for convenience.

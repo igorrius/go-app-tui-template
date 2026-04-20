@@ -1,4 +1,10 @@
-## ADDED Requirements
+# Logging Config
+
+## Purpose
+
+This spec defines the purpose of the Logging Config capability.
+
+## Requirements
 
 ### Requirement: Logging configuration section in app config
 The system SHALL add a `logging` top-level section to the application configuration supporting the following fields:

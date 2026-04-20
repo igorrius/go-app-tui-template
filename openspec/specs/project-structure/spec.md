@@ -1,4 +1,10 @@
-## ADDED Requirements
+# Project Structure
+
+## Purpose
+
+This spec defines the purpose of the Project Structure capability.
+
+## Requirements
 
 ### Requirement: Layered package structure
 The system SHALL organize code into `internal/domain/`, `internal/infra/`, and `internal/service/` packages representing distinct architectural layers.

@@ -1,4 +1,10 @@
-## ADDED Requirements
+# Logging Async Writer
+
+## Purpose
+
+This spec defines the purpose of the Logging Async Writer capability.
+
+## Requirements
 
 ### Requirement: AsyncWriter subscribes to log events and writes to sink
 The system SHALL provide an `AsyncWriter` that subscribes to the `go-vein` bus topic for `LogEvent` messages and for each event writes a log line to the configured sink using a standard `slog.TextHandler` or `slog.JSONHandler`.

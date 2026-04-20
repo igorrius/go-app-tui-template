@@ -1,4 +1,10 @@
-## ADDED Requirements
+# TUI Log View
+
+## Purpose
+
+This spec defines the purpose of the TUI Log View capability.
+
+## Requirements
 
 ### Requirement: Log view screen displays live log entries
 The system SHALL provide a `LogView` screen that receives `LogEvent` messages from a provided channel and renders each received log entry as a formatted text line using `logging.ColorTextFormatter`.

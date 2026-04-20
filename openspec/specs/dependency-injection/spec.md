@@ -1,4 +1,10 @@
-## ADDED Requirements
+# Dependency Injection
+
+## Purpose
+
+This spec defines the purpose of the Dependency Injection capability.
+
+## Requirements
 
 ### Requirement: DI container with Provider pattern
 The system SHALL use `samber/do` as the dependency injection container, with all providers defined as `func ProvideXxx(i do.Injector) (T, error)` in the `internal/cfg` package.

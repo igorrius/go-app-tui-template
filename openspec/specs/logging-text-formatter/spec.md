@@ -1,4 +1,10 @@
-## ADDED Requirements
+# Logging Text Formatter
+
+## Purpose
+
+This spec defines the purpose of the Logging Text Formatter capability.
+
+## Requirements
 
 ### Requirement: Text formatter renders log records in canonical field order
 The system SHALL provide a `logging.TextFormatter` type with a `Format(LogEvent) string` method that renders each log record in the following fixed order: `Time`, `Level`, `Module`, then all remaining attributes as `key=value` pairs.

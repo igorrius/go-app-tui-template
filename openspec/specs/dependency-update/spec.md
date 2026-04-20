@@ -2,7 +2,7 @@
 
 Track dependency version requirements and build verification steps for external library updates.
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: Dependency alignment
 The project MUST use `github.com/charmbracelet/bubbletea` version `v2.0.2`.

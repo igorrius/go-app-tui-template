@@ -1,4 +1,10 @@
-## ADDED Requirements
+# Logging Init
+
+## Purpose
+
+This spec defines the purpose of the Logging Init capability.
+
+## Requirements
 
 ### Requirement: Logger initialisation at startup
 The system SHALL provide a `logging.Init(cfg LoggingConfig, bus *vein.Dispatcher) error` function that creates a `VeinHandler`, starts the `AsyncWriter` goroutine, and calls `slog.SetDefault` with the resulting logger.

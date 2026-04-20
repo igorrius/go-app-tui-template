@@ -1,4 +1,10 @@
-## ADDED Requirements
+# Logging Vein Handler
+
+## Purpose
+
+This spec defines the purpose of the Logging Vein Handler capability.
+
+## Requirements
 
 ### Requirement: VeinHandler implements slog.Handler
 The system SHALL provide a `VeinHandler` struct that implements `slog.Handler` and publishes a `LogEvent` to the application message bus on each `Handle` call.

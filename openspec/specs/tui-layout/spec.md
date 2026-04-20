@@ -1,4 +1,10 @@
-## ADDED Requirements
+# TUI Layout
+
+## Purpose
+
+This spec defines the purpose of the TUI Layout capability.
+
+## Requirements
 
 ### Requirement: Full-terminal window layout
 The system SHALL render the TUI occupying the entire available terminal area, dynamically adjusting to terminal resize events.

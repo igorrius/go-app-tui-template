@@ -1,4 +1,10 @@
-## ADDED Requirements
+# Config Management
+
+## Purpose
+
+This spec defines the purpose of the Config Management capability.
+
+## Requirements
 
 ### Requirement: YAML config file loading
 The system SHALL load application configuration from a YAML file, defaulting to `app-config.yaml` with fallback to `app-config.dist.yaml`. Additionally, the system SHALL load a `.env` file if it exists and perform environment variable interpolation on the YAML content. The loaded configuration SHALL include a `logging` section that, when absent, resolves to default logging values.
